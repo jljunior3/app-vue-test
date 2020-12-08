@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    App
+    <user-profile />
+    <search />
   </div>
 </template>
 
 <script>
+import UserProfile from '@/components/UserProfile.vue'
+import Search from './components/Search.vue'
+
 export default {
   name: 'App',
-  components: {}
+  components: { UserProfile, Search }
 }
 </script>
 
