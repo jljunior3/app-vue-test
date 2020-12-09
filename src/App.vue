@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <search />
-    <user-profile v-for="user in users" :key="user.id" :user="user" />
+    <search @doSearch="setSearchTerm" />
+    <div v-if="errorMessage === ''">
+      <user-profile v-for="user in list" :key="user.id" :user="user" />
+    </div>
+    <span v-else>{{ errorMessage }}</span>
+    <span v-if="listEmpty">{{ searchEmpty }}</span>
   </div>
 </template>
 
@@ -15,15 +19,35 @@ export default {
   components: { UserProfile, Search },
   data() {
     return {
-      users: []
+      users: [],
+      errorMessage: '',
+      searchTerm: '',
+      searchEmpty: 'Nenhum usuário encontrado!'
+    }
+  },
+  computed: {
+    list() {
+      if (this.searchTerm !== '') {
+        return this.users.filter(user =>
+          user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        )
+      }
+      return this.users
+    },
+    listEmpty() {
+      return !this.list.length > 0
+    }
+  },
+  methods: {
+    setSearchTerm(filter) {
+      this.searchTerm = filter.term
     }
   },
   async created() {
     try {
       this.users = (await axios.get('/api/users')).data.users
-      console.log('user', this.users)
     } catch (error) {
-      console.log(error)
+      this.errorMessage = 'Problemas ao carregar a lista!'
     }
   }
 }
