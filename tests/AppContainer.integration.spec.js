@@ -182,7 +182,7 @@ describe('App', () => {
     expect(usersProfile).toHaveLength(2)
   })
 
-  fit('should show a message when the search returns empty', async () => {
+  it('should show a message when the search returns empty', async () => {
     //arrange
     const users = [...server.createList('user', 10)]
 
