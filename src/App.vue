@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <user-profile />
     <search />
+    <user-profile v-for="user in users" :key="user.id" :user="user" />
   </div>
 </template>
 
@@ -13,12 +13,17 @@ import axios from 'axios'
 export default {
   name: 'App',
   components: { UserProfile, Search },
+  data() {
+    return {
+      users: []
+    }
+  },
   async created() {
     try {
-      const teste = await axios.get('/api/users')
-      console.log(teste.data.users)
+      this.users = (await axios.get('/api/users')).data.users
+      console.log('user', this.users)
     } catch (error) {
-      this.errorMessage = 'Problemas ao carregar a lista!'
+      console.log(error)
     }
   }
 }

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile - unit should match snapshot 1`] = `
+<div>
+  <span>
+    Júnior
+  </span>
+   
+  <span>
+    teste@teste.com.br
+  </span>
+</div>
+`;
+
+exports[`UserProfile Unit Test should match snapshot 1`] = `
+<div>
+  <span>
+    Júnior
+  </span>
+   
+  <span>
+    teste@teste.com.br
+  </span>
+</div>
+`;
