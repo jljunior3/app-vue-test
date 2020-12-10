@@ -37,8 +37,10 @@ export default {
   computed: {
     list() {
       if (this.searchTerm !== '') {
-        return this.users.filter(user =>
-          user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        return this.users.filter(
+          user =>
+            user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
         )
       }
       return this.users

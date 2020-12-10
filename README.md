@@ -1,29 +1,25 @@
 # app-dasa-test
 
-## Project setup
+## Após clonar o projeto rode o comando abaixo para instalar as dependências
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Para ver o app funcionando rode o comando abaixo.
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Para rodar os testes unitários rode o comando abaixo
 
-### Run your unit tests
 ```
 npm run test:unit
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Para saber a cobertura de testes (coverage) rode o comando abaixo
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+test:unit:coverage
+```
