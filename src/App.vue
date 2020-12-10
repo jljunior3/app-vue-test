@@ -1,11 +1,20 @@
 <template>
   <div id="app">
-    <search @doSearch="setSearchTerm" />
-    <div v-if="errorMessage === ''">
+    <div class="header">
+      <img
+        class="logo"
+        src="https://dasa.com.br/sites/dasa.com.br/themes/custom/dasa/dist/images/dasa-logo.png"
+      />
+      <search @doSearch="setSearchTerm" />
+    </div>
+
+    <div class="users-cards" v-if="errorMessage === ''">
       <user-profile v-for="user in list" :key="user.id" :user="user" />
     </div>
+
     <span v-else>{{ errorMessage }}</span>
-    <span v-if="listEmpty">{{ searchEmpty }}</span>
+
+    <span class="empty-message" v-if="listEmpty">{{ searchEmpty }}</span>
   </div>
 </template>
 
@@ -54,12 +63,41 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  background-color: #3d2892;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.users-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.empty-message {
+  color: #fff;
+  font-size: 1.5em;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    img {
+      margin-bottom: 10px;
+    }
+  }
 }
 </style>

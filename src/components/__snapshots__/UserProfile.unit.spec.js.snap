@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserProfile - unit should match snapshot 1`] = `
-<div>
-  <span>
+<div
+  class="user-card"
+>
+  <span
+    class="user-name"
+  >
     Júnior
   </span>
    
-  <span>
+  <span
+    class="user-email"
+  >
     teste@teste.com.br
   </span>
 </div>

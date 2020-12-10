@@ -1,6 +1,12 @@
 <template>
   <form @submit.prevent="doSearch">
-    <input v-model="term" type="search" @keydown.esc.prevent="clear" />
+    <input
+      class="search"
+      v-model="term"
+      type="search"
+      @keydown.esc.prevent="clear"
+      placeholder="Digite o nome do usuário"
+    />
   </form>
 </template>
 
@@ -29,3 +35,22 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.search {
+  font-size: 1.1em;
+  padding: 5px;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  form {
+    width: 100%;
+
+    .search {
+      width: 300px;
+    }
+  }
+}
+</style>
