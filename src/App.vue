@@ -8,6 +8,8 @@
       <search @doSearch="setSearchTerm" />
     </div>
 
+    <user-selected v-if="!listEmpty" />
+
     <div class="users-cards" v-if="errorMessage === ''">
       <user-profile v-for="user in list" :key="user.id" :user="user" />
     </div>
@@ -22,10 +24,11 @@
 import UserProfile from '@/components/UserProfile.vue'
 import Search from './components/Search.vue'
 import axios from 'axios'
+import UserSelected from './components/UserSelected.vue'
 
 export default {
   name: 'App',
-  components: { UserProfile, Search },
+  components: { UserProfile, Search, UserSelected },
   data() {
     return {
       users: [],

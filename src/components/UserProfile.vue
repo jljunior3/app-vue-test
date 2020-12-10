@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card">
+  <div data-testid="button-card" class="user-card" @click="setUserSeletected">
     <span class="user-name">{{ user.name }}</span>
     <span class="user-email">{{ user.email }}</span>
   </div>
@@ -14,7 +14,11 @@ export default {
       required: true
     }
   },
-  created() {}
+  methods: {
+    setUserSeletected() {
+      this.$store.commit('SET_USER_SELECTED', this.user)
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -28,7 +32,8 @@ export default {
   background-color: #fff;
 
   &:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;
   }
 
   .user-name {

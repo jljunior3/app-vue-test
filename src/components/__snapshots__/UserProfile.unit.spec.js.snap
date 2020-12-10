@@ -3,6 +3,7 @@
 exports[`UserProfile - unit should match snapshot 1`] = `
 <div
   class="user-card"
+  data-testid="button-card"
 >
   <span
     class="user-name"

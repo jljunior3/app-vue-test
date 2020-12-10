@@ -39,4 +39,25 @@ describe('UserProfile - unit', () => {
     expect(wrapper.text()).toContain('Júnior')
     expect(wrapper.text()).toContain('teste@teste.com.br')
   })
+
+  it('should trigger a commit when the button is clicked', async () => {
+    const mockStore = { commit: jest.fn() }
+    const user = {
+      id: 1,
+      name: 'Júnior',
+      email: 'teste@teste.com.br'
+    }
+    const wrapper = mount(UserProfile, {
+      propsData: {
+        user
+      },
+      mocks: {
+        $store: mockStore
+      }
+    })
+
+    await wrapper.find('[data-testid="button-card"]').trigger('click')
+
+    expect(mockStore.commit).toHaveBeenCalledWith('SET_USER_SELECTED', user)
+  })
 })

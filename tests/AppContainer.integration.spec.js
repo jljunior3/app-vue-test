@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import { makeServer } from '@/miragejs/server'
 import axios from 'axios'
 import App from '@/App'
@@ -13,7 +13,12 @@ jest.mock('axios', () => ({
 const mountBuild = () => {
   const wrapper = mount(App, {
     mocks: {
-      $axios: axios
+      $axios: axios,
+      $store: {
+        state: {
+          userSelected: ''
+        }
+      }
     }
   })
 

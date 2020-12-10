@@ -7,6 +7,8 @@ module.exports = {
   // testPathIgnorePatterns: ['<rootDir>/src/miragejs/'],
   collectCoverageFrom: [
     '!<rootDir>/src/miragejs/**/*.js',
-    '<rootDir>/src/**/**/*.vue'
+    '!<rootDir>/src/store/index.js',
+    '<rootDir>/src/**/**/*.vue',
+    '<rootDir>/src/store/**/*.js'
   ]
 }
