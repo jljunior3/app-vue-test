@@ -1,17 +1,29 @@
 import { mount } from '@vue/test-utils'
 import Search from '@/components/Search'
 
+const mountBuild = () => {
+  const wrapper = mount(Search)
+  const input = wrapper.find('input[type="search"]')
+  const form = wrapper.find('form')
+
+  return {
+    wrapper,
+    input,
+    form
+  }
+}
+
 describe('Search - unit', () => {
   it('should mount the component', () => {
-    const wrapper = mount(Search)
+    const { wrapper } = mountBuild()
     expect(wrapper.vm).toBeDefined()
   })
 
   it('should emit search event when form is submitted', async () => {
-    const wrapper = mount(Search)
+    const { wrapper, input, form } = mountBuild()
     const term = 'Júnior'
-    await wrapper.find('input[type="search"]').setValue(term)
-    await wrapper.find('form').trigger('submit')
+    await input.setValue(term)
+    await form.trigger('submit')
 
     expect(wrapper.emitted().doSearch).toBeTruthy()
     expect(wrapper.emitted().doSearch.length).toBe(1)
@@ -19,9 +31,8 @@ describe('Search - unit', () => {
   })
 
   it('Should emit search event when search input is cleared when esc button is pressed', async () => {
-    const wrapper = mount(Search)
+    const { wrapper, input } = mountBuild()
     const term = 'Júnior'
-    const input = wrapper.find('input[type="search"]')
     await input.setValue(term)
     await input.trigger('keydown.esc')
 
@@ -32,9 +43,8 @@ describe('Search - unit', () => {
   })
 
   it('Should emit search event when search input is cleared without pressing the esc key', async () => {
-    const wrapper = mount(Search)
+    const { wrapper, input } = mountBuild()
     const term = 'Júnior'
-    const input = wrapper.find('input[type="search"]')
     await input.setValue(term)
     await input.setValue('')
 
