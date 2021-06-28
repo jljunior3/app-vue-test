@@ -1,10 +1,6 @@
 <template>
   <div id="app">
     <div class="header">
-      <img
-        class="logo"
-        src="https://dasa.com.br/sites/dasa.com.br/themes/custom/dasa/dist/images/dasa-logo.png"
-      />
       <search @doSearch="setSearchTerm" />
     </div>
 
@@ -16,7 +12,9 @@
 
     <span v-else>{{ errorMessage }}</span>
 
-    <span class="empty-message" v-if="listEmpty">{{ searchEmpty }}</span>
+    <span class="empty-message" v-if="listEmpty && errorMessage === ''">{{
+      searchEmpty
+    }}</span>
   </div>
 </template>
 
